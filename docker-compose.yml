@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  app:
+    build: ./docker/php
+    container_name: laravel_quiz
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    command: >
+      bash -c "
+      chown -R www-data:www-data database storage bootstrap/cache &&
+      apache2-foreground
+      "
